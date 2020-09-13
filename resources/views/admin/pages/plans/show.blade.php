@@ -37,19 +37,22 @@
                         <td><i class="fas fa-link" title="URL"></i></td>
                         <td><a href="{{ $plan->url ?? "" }}">{{ $plan->url ?? "" }}</a></td>
                     </tr>
-                    <tr>
-                        <td><i class="fas fa-comment-dots" title="Descrição"></i></td>
-                        <td>{{ $plan->description ?? "" }}</td>
-                    </tr>
+                    @isset($plan->description)
+                        <tr>
+                            <td><i class="fas fa-comment-dots" title="Descrição"></i></td>
+                            <td>{{ $plan->description ?? "" }}</td>
+                        </tr>
+                    @endisset
                 </tbody>
             </table>
         </div>
         <div class="card-footer">
-            <form action="{{ route('plans.destroy', $plan->url) }}" method="POST">
+            <form class="float-left" action="{{ route('plans.destroy', $plan->url) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger btn-outline-warning" title="Excluir plano" type="submit"><i class="fas fa-trash-alt"></i></button>
             </form>
+            <button class="float-left ml-3 btn btn-warning btn-outline-dark" title="Editar este plano" onclick="window.location.href='{{ route('plans.edit', $plan->url) }}'"><i class="fas fa-pen"></i></button>
         </div>
     </div>
 @stop

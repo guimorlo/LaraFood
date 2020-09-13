@@ -1,6 +1,8 @@
 <?php
 
-$countPlans =  \App\Http\Controllers\Admin\PlanController::count();
+
+
+$countPlans = 4;
 
 return [
 

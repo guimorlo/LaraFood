@@ -18,15 +18,15 @@
                 @csrf
                 <div class="form-group">
                     <label for="name">Nome:</label>
-                    <input type="text" name="name" id="name" class="form-control" required>
+                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') ?? "" }}" required>
                 </div>
                 <div class="form-group">
                     <label for="price">Preço:</label>
-                    <input type="number" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" name="price" id="price" class="form-control" required>
+                    <input type="number" pattern="[0-9]+([,\.][0-9]+)?" min="0" step="any" name="price" id="price" class="form-control" value="{{ old('price') ?? "" }}" required>
                 </div>
                 <div class="form-group">
                     <label for="description">Descrição:</label>
-                    <input type="text" name="description" id="description" class="form-control" required>
+                    <textarea  class="form-control swal2-textarea" name="description" type="text" >{{ old('description') ?? "" }}</textarea>
                 </div>
                 <div class="form-group">
                     <input type="reset" class="btn btn-secondary btn-outline-light">

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Plan extends Model
 {
@@ -15,4 +16,5 @@ class Plan extends Model
                         ->latest()->paginate(6);
         return $results;
     }
+
 }

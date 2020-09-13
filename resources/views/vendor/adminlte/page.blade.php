@@ -19,7 +19,11 @@
 
 @section('body')
     <div class="wrapper">
-
+        @isset($errors)
+            @if(sizeof($errors) > 0)
+                @include('vendor.adminlte.partials.toasts')
+            @endif
+        @endisset
         {{-- Top Navbar --}}
         @if($layoutHelper->isLayoutTopnavEnabled())
             @include('adminlte::partials.navbar.navbar-layout-topnav')
