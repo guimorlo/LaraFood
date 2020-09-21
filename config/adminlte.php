@@ -1,9 +1,5 @@
 <?php
 
-
-
-$countPlans = 4;
-
 return [
 
     /*
@@ -20,7 +16,7 @@ return [
 
     'title' => 'LaraFood',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => ' - LaraFood',
 
     /*
     |--------------------------------------------------------------------------
@@ -236,18 +232,9 @@ return [
 
     'menu' => [
         [
-            'text' => 'Busca',
-            'search' => true,
-            'topnav' => true,
+            'header' => 'CONFIGURAÇÕES DE USUÁRIO',
+            'key' => 'userHeader',
         ],
-        [
-            'text' => 'Planos',
-            'url'  => 'admin/plans',
-            'icon'        => 'far fa-fw fas fa-archive',
-            'label'       => $countPlans,
-            'label_color' => 'success',
-        ],
-        ['header' => 'CONFIGURAÇÕES DE USUÁRIO'],
         [
             'text' => 'Usuários',
             'url'  => 'admin/users',

@@ -12,10 +12,12 @@ use Illuminate\Support\Str;
 class PlanController extends Controller
 {
     private $repository;
+    private $detailController;
 
-    public function __construct(Plan $plan)
+    public function __construct(Plan $plan, DetailPlanController $detailPlanController)
     {
         $this->repository = $plan;
+        $this->detailController = $detailPlanController;
     }
 
     public function index($message = null)
@@ -42,12 +44,14 @@ class PlanController extends Controller
     public function show($url)
     {
         $plan = $this->repository->where('url', $url)->first();
+        $details = $this->detailController->list($url);
 
         if (!$plan)
             return redirect()->back();
         else
             return view('admin.pages.plans.show', [
                 'plan' => $plan,
+                'details' => $details,
             ]);
     }
 

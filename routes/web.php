@@ -2,19 +2,35 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::put('admin/plans/{url}', 'Admin\PlanController@update')->name('plans.update');
-Route::get('admin/plans/{url}/edit', 'Admin\PlanController@edit')->name('plans.edit');
-Route::get('admin/plans/create', 'Admin\PlanController@create')->name('plans.create');
-Route::any('admin/plans/search', 'Admin\PlanController@search')->name('plans.search');
-Route::delete('admin/plans/{url}', 'Admin\PlanController@destroy')->name('plans.destroy');
-Route::get('admin/plans/{url}', 'Admin\PlanController@show')->name('plans.show');
-Route::post('admin/plans', 'Admin\PlanController@store')->name('plans.store');
-Route::get('admin/plans', 'Admin\PlanController@index')->name('plans.index');
+Route::prefix('admin')->namespace('Admin')->group(function ()
+{
+    /*
+    * Plan Routes
+    */
+    Route::prefix('plans')->group(function ()
+    {
+        /*
+        * Plan Details Routes
+        */
+        Route::post('{url}/details/', 'DetailPlanController@store')->name('plans.details.store');
+        Route::get('{url}/details/create', 'DetailPlanController@create')->name('plans.details.create');
 
-Route::get('admin', 'Admin\PlanController@index')->name('admin.index');
+        Route::put('{url}', 'PlanController@update')->name('plans.update');
+        Route::get('{url}/edit', 'PlanController@edit')->name('plans.edit');
+        Route::get('create', 'PlanController@create')->name('plans.create');
+        Route::any('search', 'PlanController@search')->name('plans.search');
+        Route::delete('{url}', 'PlanController@destroy')->name('plans.destroy');
+        Route::get('{url}', 'PlanController@show')->name('plans.show');
+        Route::post('/', 'PlanController@store')->name('plans.store');
+        Route::get('/', 'PlanController@index')->name('plans.index');
+    });
+
+    Route::get('/', 'PlanController@index')->name('admin.index');
+});
+
 
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('plans.index');
 })->name('root');

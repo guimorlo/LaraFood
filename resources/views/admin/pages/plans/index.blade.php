@@ -10,7 +10,7 @@
                 <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
             </ol>
             <h1 class="float-left">Planos</h1>
-            <a href="{{ route('plans.create') }}" class="btn btn-dark btn-outline-primary float-left ml-4 float-xl-left"><i class="fas fa-plus-circle"></i> Novo Plano</a>
+            <a href="{{ route('plans.create') }}" class="btn btn-dark btn-outline-primary float-left ml-3 float-xl-left"><i class="fas fa-plus-circle"></i> Novo Plano</a>
         </div>
     </div>
 @stop

@@ -44,7 +44,45 @@
                         </tr>
                     @endisset
                 </tbody>
+                <thead class="thead-dark">
+                <tr class="text-center">
+                    <th colspan="4">DETALHES <a href="{{ route('plans.details.create', $plan->url) }}" class="btn btn-primary btn-outline-light float-right py-0" title="Cadastrar novo detalhe"><i class="fas fa-plus-circle"></i></a></th>
+                </tr>
+                </thead>
             </table>
+                @if(isset($details) && (sizeof($details) > 0))
+                <div class="accordion" id="accordionDetails">
+                        @foreach($details as $detail)
+                            <div class="card mb-0">
+                                <div class="card-header p-0" id="heading{{ $detail->id ?? "null" }}">
+                                    <h2 class="mb-0">
+                                        <button type="button" class="btn btn-link w-100 text-left p-3 text-bold" data-toggle="collapse" data-target="#collapse{{ $detail->id ?? "null" }}">
+                                            {{ $detail->name ?? "null" }} <i class="fas fa-chevron-down float-right"></i></button>
+                                    </h2>
+                                </div>
+                                <div id="collapse{{ $detail->id ?? "null" }}" class="collapse" aria-labelledby="heading{{ $detail->id ?? "null"}}" data-parent="#accordionDetails">
+                                    <div class="card-body">
+                                        <p>{{ $detail->description ?? "null" }}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <form class="float-left" action="" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-secondary btn-outline-light" title="Excluir detalhe" type="submit"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                        <button class="float-left ml-3 btn btn-secondary btn-outline-light" title="Editar detalhe" onclick="window.location.href=''"><i class="fas fa-pen"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                </div>
+                @else
+                <div class="card text-center p-3">
+                    <h4>
+                        Não há detalhes cadastrados!
+                    </h4>
+                </div>
+                @endif
         </div>
         <div class="card-footer">
             <form class="float-left" action="{{ route('plans.destroy', $plan->url) }}" method="POST">
